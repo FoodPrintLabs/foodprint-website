@@ -1,75 +1,16 @@
-# FoodPrint
+# FoodPrint Website
 
-FoodPrint is a digital, blockchain-enabled, farm-to-fork (fresh produce) supply chain platform for
-smallholder farmers, primarily in developing countries. FoodPrint is designed to:
-
-- Simplify production and harvest data collection for smallholder farmers.
-- Directly connect them to market opportunities - including but not limited to intermediaries such
-  as markets and retailers, as well as consumers.
-- Provide them with access to blockchain-based financial and transactional services.
-
-## Overview
-
-FoodPrint has 5 types of users:
-
-- Super User Admin
-
-The Super User is responsible for setting up the infrastructure and system configuration.
-
-- System Admin
-
-The System Admin is responsible for the day-to-day running of the platform, providing user support
-(on-boarding and operations) and basic configuration.
-
-- Farmer
-
-The Farmer is responsible for capturing produce data at harvest time onto FoodPrint. The Farmer also
-transports the produce to the Market as per order from Market Admin.
-
-- Intermediary e.g. Wholesaler, Retailers, Farmers Market Admin etc
-
-The Intermediary is responsible for receiving produce from the Farmer and capturing the relevant
-data onto FoodPrint.
-
-- Consumer
-
-The consumer is the final actor in a food supply chain. They purchase fresh produce from an
-intermediary. The consumer can scan a barcode associated with produce and view the verified produce
-information and supply chain stories i.e. view information on the produce they are buying, it's
-source and journey, hence from farm-to-fork. Android versions 8 & 9 and iOS versions 11 & 12 can
-automatically scan QR codes using the camera app.
-
-## Documentation
-
-TODO
+FoodPrint website built using Node.js and Bootstrap.
 
 ## IDE Setup
 
 IDE of choice is VS Code
 
-Code Formatter is Prettier
-
-Make sure prettier is installed i.e. `npm install --save-dev --save-exact prettier`
-
-Project specific Prettier config file is `.prettierrc.json` which is in the project root
-
-Make sure Prettier extension is installed in VS Code (run following command in VS Code
-`ext install esbenp.prettier-vscode`)
-
-Project specific VS Code config file is `.vscode/settings.json`
-
-To run Prettier CLI `npm run format` (which is defined in package.json)
-
-To run Prettier manually for specific file formats `prettier --write 'src/**/*.{ts,tsx}'`
-
-Credit - https://glebbahmutov.com/blog/configure-prettier-in-vscode/
-
 ## Installation (Development Environment)
 
-In order to run FoodPrint, an environment with the following is required:
+In order to run FoodPrint Website, an environment with the following is required:
 
 - Node.js
-- Algosdk
 - Bootstrap
 - MySQL
 
@@ -143,9 +84,6 @@ ACCOUNT2_ADDRESS=REPLACE_ME
 ACCOUNT2_MNEMONIC=REPLACE_ME
 ```
 
-You can then access the variables in your code using process.env e.g.
-`console.log(process.env.NODE_ENV)`
-
 5. Start the web server (Express) and navigate to http://localhost:3000/ in your browser.
 
 ```
@@ -178,24 +116,6 @@ node sequelise_auto_export.js
 The generated models can be found in `./models`
 
 - Generate test UUID's from command line (i.e. server side).
-
-```
-$node
->const uuidv4 = require('uuid/v4')
->uuidv4()
-```
-
-- Generate test QRCode's from command line (i.e. server side).
-
-```
-$node
->var QRCode = require('qrcode');
->let produceUrl = "http://www.google.com";
->let supplier = "supplier";
->let produce = "Storage";
->var res2 = await QRCode.toDataURL(produceUrl);
->res2
-```
 
 ## Deploy to Heroku
 
@@ -304,17 +224,6 @@ Backup Heroku Postgres database
 $ heroku pg:backups:capture
 $ heroku pg:backups:download
 ```
-
-## Previous contract details
-
-Initial contract was deployed at Ethereum Testnet (rinkeby) at address
-https://rinkeby.etherscan.io/address/0xfC4d26073650887069dFa7Da686A491535ab8Fd4.
-
-This was followed by a deployment to the Matic Testnet (mumbai) at address
-https://mumbai.polygonscan.com/address/0x650168110ADa1f089D443904c6759b7349576A0d,
-
-Latest version of FoodPrint is integrated with the Algorand TestNet via the `algosdk` and
-`PureStake` service.
 
 ## Supported Browsers
 
