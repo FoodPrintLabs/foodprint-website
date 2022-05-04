@@ -14,61 +14,14 @@ var LocalStrategy = require('passport-local').Strategy;
 var fs = require('fs');
 var sequelise = require('./config/db/db_sequelise');
 
-const swaggerJSDoc = require('swagger-jsdoc');
-const swaggerUi = require('swagger-ui-express');
-
 //only load the .env file if the server isn’t started in production mode
 if (process.env.NODE_ENV !== CUSTOM_ENUMS.PRODUCTION) {
   require('dotenv').config();
 }
 
-// const uuidv4 = require('uuid/v4')
-var db = require('./config/passport/localdb');
-
-const swaggerDefinition = {
-  openapi: '3.0.0',
-  info: {
-    title: 'Foodprint API',
-    version: '1.0.0',
-    description: 'Foodprint API to allow external apps to communicate with Foodprint',
-    license: {
-      name: 'Licensed Under MIT',
-      url: 'https://github.com/FoodPrintLabs/foodprint/blob/master/LICENSE',
-    },
-    contact: {
-      name: 'Foodprint Labs',
-      url: 'https://github.com/FoodPrintLabs',
-    },
-  },
-  servers: [
-    {
-      url: 'http://localhost:3000',
-      description: 'dev',
-    },
-  ],
-};
-
-const swaggerOptions = {
-  swaggerDefinition,
-  apis: ['./routes/*.js'],
-};
-
-const swaggerSpecs = swaggerJSDoc(swaggerOptions);
-
 var app = express();
-var configRouter = require('./routes/config');
-var harvestRouter = require('./routes/harvest');
-var storageRouter = require('./routes/storage');
-var authRouter = require('./routes/auth');
-var blockchainRouter = require('./routes/blockchain');
-var dashboardsRouter = require('./routes/dashboards');
-var qrCodeRouter = require('./routes/qrcode');
 
-var testRouter = require('./routes/test');
-var searchRouter = require('./routes/search');
 var websiteRouter = require('./routes/website');
-var apiV1Router = require('./routes/api_v1');
-var produceRouter = require('./routes/produce');
 
 // enable ssl redirect
 app.use(
@@ -136,107 +89,12 @@ app.use(function (req, res, next) {
   next();
 });
 
-app.use('/docs', swaggerUi.serve, swaggerUi.setup(swaggerSpecs));
-
 // Mount routers
 app.use('/', router);
-app.use('/', blockchainRouter);
-app.use('/app/config', configRouter);
-app.use('/app/auth', authRouter);
-app.use('/app/harvest', harvestRouter);
-app.use('/app/storage', storageRouter);
-app.use('/app/produce', produceRouter);
-app.use('/app/dashboards', dashboardsRouter);
-
 app.use('/', websiteRouter);
-app.use('/', testRouter);
-app.use('/', searchRouter);
-app.use('/', qrCodeRouter);
-
-app.use('/app/api/v1', apiV1Router);
 
 app.use(express.static(path.join(__dirname, 'src')));
 app.use(express.static(path.join(__dirname, 'build')));
-
-// Configure the local strategy for use by Passport.
-//
-// The local strategy require a `verify` function which receives the credentials
-// (`username` and `password`) submitted by the user.  The function must verify
-// that the password is correct and then invoke `cb` with a user object, which
-// will be set at `req.user` in route handlers after authentication.
-
-// We will use two LocalStrategies, one for file-based auth and another for db-auth
-passport.use(
-  'file-local',
-  new LocalStrategy(
-    {
-      usernameField: 'loginUsername', //useful for custom id's on your credentials fields, if incorrect you get a missing credentials error
-      passwordField: 'loginPassword', //useful for custom id's on your credentials fields
-    },
-    function (username, password, cb) {
-      db.users.findByUsername(username, function (err, user) {
-        if (err) {
-          return cb(err);
-        }
-        if (!user) {
-          return cb(null, false, { message: 'Incorrect username.' });
-        }
-        if (user.password != password) {
-          return cb(null, false, { message: 'Incorrect password.' });
-        }
-        // If the credentials are valid, the verify callback invokes done to supply
-        // Passport with the user that authenticated.
-        return cb(null, user);
-      });
-    }
-  )
-);
-
-passport.use(
-  'db-local',
-  new LocalStrategy(
-    {
-      usernameField: 'loginUsername', //useful for custom id's on your credentials fields, if this is incorrect you get a missing credentials error
-      passwordField: 'loginPassword', //useful for custom id's on your credentials fields
-    },
-    function (username, password, cb) {
-      db.users.findByUsername(username, function (err, user) {
-        if (err) {
-          return cb(err);
-        }
-        if (!user) {
-          return cb(null, false, { message: 'Incorrect username.' });
-        }
-        if (user.password != password) {
-          return cb(null, false, { message: 'Incorrect password.' });
-        }
-        // If the credentials are valid, the verify callback invokes done to
-        // supply Passport with the user that authenticated.
-        return cb(null, user);
-      });
-    }
-  )
-);
-
-// Configure Passport authenticated session persistence.
-//
-// In order to restore authentication state across HTTP requests, Passport needs
-// to serialize users into and deserialize users out of the session.  The
-// typical implementation of this is as simple as supplying the user ID when
-// serializing, and querying the user record by ID from the database when
-// deserializing.
-passport.serializeUser(function (user, cb) {
-  cb(null, user.id);
-});
-
-passport.deserializeUser(function (id, cb) {
-  db.users.findById(id, function (err, user) {
-    if (err) {
-      return cb(err);
-    }
-    cb(null, user);
-  });
-});
 
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
