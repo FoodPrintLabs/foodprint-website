@@ -157,7 +157,7 @@ router.post(
         contact_email +
         '</p><p>Email Message: ' +
         contact_message +
-        '</p><br><br><p>Sent from https://www.foodprintapp.com/contact by </p>' +
+        '</p><br><br><p>Sent from https://www.foodprintlabs.com/contact by </p>' +
         contact_fname +
         ' ' +
         contact_lname +
