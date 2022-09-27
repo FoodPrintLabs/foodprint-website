@@ -1,26 +1,51 @@
 /* Your custom css code goes here */
-.imgGrid{
-    width:350px;
-    height:250px;
-    overflow: hidden;
+.imgGrid {
+  width: 350px;
+  height: 250px;
+  overflow: hidden;
 }
 
 /*  spinner CSS */
 @keyframes spinner-border {
-    to { transform: rotate(360deg); }
-  } 
-  .spinner-border{
-      display: inline-block;
-      width: 1rem;
-      height: 1rem;
-      vertical-align: text-bottom;
-      border: .25em solid currentColor;
-      border-right-color: transparent;
-      border-radius: 50%;
-      -webkit-animation: spinner-border .75s linear infinite;
-      animation: spinner-border .75s linear infinite;
+  to {
+    transform: rotate(360deg);
   }
-  .spinner-border-sm{
-      height: 1rem;
-      border-width: .2em;
+}
+.spinner-border {
+  display: inline-block;
+  width: 1rem;
+  height: 1rem;
+  vertical-align: text-bottom;
+  border: 0.25em solid currentColor;
+  border-right-color: transparent;
+  border-radius: 50%;
+  -webkit-animation: spinner-border 0.75s linear infinite;
+  animation: spinner-border 0.75s linear infinite;
+}
+.spinner-border-sm {
+  height: 1rem;
+  border-width: 0.2em;
+}
+
+/*Front Page Button media queries for mobile */
+
+@media only screen and (max-width: 400px) {
+  .index-login-buttons {
+    font-size: medium;
+    padding-left: 2rem;
+    padding-right: 2rem;
   }
+}
+@media only screen and (max-width: 320px) {
+  .index-login-buttons {
+    font-size: small;
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  .index-heading {
+    font-size: 60px !important;
+  }
+  .mobile-image-fit {
+    width: 10rem;
+  }
+}
