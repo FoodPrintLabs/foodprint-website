@@ -1,0 +1,212 @@
+// ------------------- Variables -------------------
+$primary-color: #84a63d;
+*,
+body {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+// ------------------ Navbar ----------------------
+#navbar {
+    margin: 0;
+    padding: 0 !important;
+    width: 100vw;
+    background-color: #fff;
+    height: 12vh;
+    -webkit-box-shadow: 0px 6px 9px 1px rgba(77, 77, 77, 0.43);
+    box-shadow: 0px 6px 9px 1px rgba(77, 77, 77, 0.43);
+    .navbar-container {
+        padding: 0 5vw;
+        width: 100%;
+        height: 100%;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        .navbar-logo-name {
+            display: flex;
+            align-items: center;
+            height: 100%;
+            gap: 1.5rem;
+            .logo {
+                width: auto;
+                height: 40px;
+            }
+            .name {
+                color: $primary-color;
+                margin: 0;
+                font: {
+                    size: 1.5rem;
+                    weight: 700;
+                }
+            }
+        }
+        .navbar-menu {
+            display: flex;
+            align-items: center;
+            .navbar-menu-list {
+                display: flex;
+                list-style: none;
+                gap: 2.5rem;
+                padding: 0 !important;
+                margin: 0 !important;
+                li a {
+                    color: #747474 !important;
+                }
+                .cta-button {
+                    background-color: $primary-color;
+                    padding: 0.5rem 2rem;
+                    color: #fff !important;
+                    font-weight: 600;
+                    border-radius: 20px;
+                    transition: all 0.5s ease-in;
+                    &:hover {
+                        background-color: #6c8633;
+                    }
+                }
+            }
+        }
+    }
+}
+
+//  -------------------------- Header --------------------
+#header {
+    height: 88vh;
+    background-image: url('../new_images/header_banner.png');
+    background-position: center;
+    background-repeat: no-repeat;
+    background-size: cover;
+    display: grid;
+    place-items: center;
+    width: 100%;
+    position: relative;
+    .overlay {
+        position: absolute;
+        width: 100%;
+        height: 100%;
+        left: 0;
+        top: 0;
+        background-color: #fff;
+        z-index: 0;
+        opacity: 0.5;
+    }
+    .header-content {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        z-index: 1;
+        .header-title {
+            width: 60%;
+            color: #2b2b2b;
+            text-align: center;
+            font: {
+                size: 4.5rem;
+                weight: 600;
+            }
+            .highlight {
+                color: #ec9c22;
+            }
+        }
+        .sub-heading {
+            width: 40%;
+            text-align: center;
+            color: #474747;
+            font: {
+                size: 1rem;
+                weight: 400;
+            }
+        }
+        .cta-button {
+            color: #fff;
+            background-color: $primary-color;
+            padding: 1rem 5rem;
+            border-radius: 25px;
+            margin-top: 2rem;
+            transition: all 0.5s ease-in;
+            font: {
+                size: 1rem;
+                weight: 600;
+            }
+            &:hover {
+                background-color: #6c8633;
+            }
+        }
+    }
+}
+
+.section-header {
+    width: 100%;
+    display: grid;
+    place-items: center;
+    padding: 2.5rem 0;
+    .section-title {
+        text-transform: uppercase;
+        letter-spacing: 2px;
+        color: #474747;
+        font: {
+            size: 2.5rem;
+            weight: 200;
+        }
+    }
+}
+
+// ----------------------------- Benefit ------------------------------
+#benefits {
+    background-color: #fff;
+    padding: 2rem 0;
+    .benefits-container {
+        display: grid;
+        grid-gap: 40px;
+        grid-template-columns: repeat(auto-fit, 450px);
+        grid-auto-flow: row;
+        width: 100%;
+        margin: 0 auto;
+        place-items: center;
+        padding: 0 13vw;
+        .benefit-card {
+            width: 100%;
+            height: 20rem;
+            position: relative;
+            -webkit-box-shadow: 2px 2px 8px 2px rgba(110, 110, 110, 0.25);
+            box-shadow: 2px 2px 8px 2px rgba(110, 110, 110, 0.25);
+            // margin: 50px auto;
+            background: #fdf4ff;
+            border-radius: 12px;
+            background-color: #fff;
+            padding: 2rem;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: flex-start;
+            .icon {
+                width: 5rem;
+                height: auto;
+                color: #84a63d !important;
+                margin: 1rem 0;
+            }
+            .feature-title {
+                color: #2b2b2b;
+                font: {
+                    size: 2.5rem;
+                    weight: 500;
+                }
+            }
+            .description {
+                text-align: left;
+                font: {
+                    size: 0.8rem;
+                }
+            }
+        }
+    }
+}
+
+// --------------------------- Features ---------------------
+#features {}
+
+// ------------------------------ SDGs -------------------------------
+// ----------------------------- Partners ------------------------------
+// -------------------------- Contact Form --------------------------
+#contact {}
+
+// ------------------------------ Footer ---------------------------
