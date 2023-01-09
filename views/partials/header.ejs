@@ -5,12 +5,16 @@
     <div class="navbar-container">
 
         <a href="/" class="navbar-logo-name">
-            <img class="logo" src="/new_images/logo.png">
+            <img class="logo" src="/new_images/logo.png" alt="logo">
             <h1 class="name">Foodprint</h1>
 
         </a>
+        <div class="menu-btn">
+            <div class="menu-bar"></div>
+            <div class="menu-bar"></div>
+            <div class="menu-bar"></div>
+        </div>
 
-        <a href="#" class="probootstrap-burger-menu visible-xs"><i>Menu</i></a>
         <nav class="navbar-menu">
             <ul class="navbar-menu-list">
                 <li><a href="/">Home</a></li>
@@ -25,3 +29,12 @@
     </div>
 </div>
 <!-- END: header -->
+<!-- ---- Burger Menu Clicking Script ------------>
+
+<script>
+    document.querySelector(".menu-btn").addEventListener("click", abc);
+
+    function abc() {
+        document.querySelector(".navbar-menu").classList.toggle("show");
+    }
+</script>
