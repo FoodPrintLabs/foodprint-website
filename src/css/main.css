@@ -63,6 +63,17 @@ body {
   background-color: #6c8633;
 }
 
+.menu-btn {
+  display: none;
+  z-index: 30 !important;
+}
+
+.menu-btn .menu-bar {
+  width: 20px;
+  height: 3px;
+  background-color: #252525;
+}
+
 #header {
   height: 88vh;
   background-image: url("../new_images/header_banner.png");
@@ -177,4 +188,254 @@ body {
 #benefits .benefits-container .benefit-card .description {
   text-align: left;
   font-size: 0.8rem;
+}
+
+#features {
+  background-color: #fafcf5;
+  margin: 0;
+  padding: 0;
+}
+#features .features-container {
+  padding: 2rem 10vw;
+  display: flex;
+  flex-direction: column;
+  gap: 5rem;
+}
+#features .features-container .feature-item {
+  display: flex;
+  width: 100%;
+  gap: 4rem;
+}
+#features .features-container .feature-item:nth-child(2) {
+  flex-direction: row-reverse;
+}
+#features .features-container .feature-item:nth-child(2) .feature-icon {
+  display: flex;
+  justify-content: flex-start;
+  align-items: center;
+  position: relative;
+}
+#features .features-container .feature-item:nth-child(2) .feature-icon::after {
+  background: rgb(160, 224, 24);
+  background: linear-gradient(270deg, rgb(160, 224, 24) 0%, rgba(255, 255, 255, 0) 100%);
+  position: absolute;
+  right: 0;
+  top: 15px;
+}
+#features .features-container .feature-item:nth-child(2) .feature-icon::before {
+  content: "";
+  height: 5px;
+  width: 80%;
+}
+#features .features-container .feature-item:nth-child(2) .feature-details {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+  justify-items: flex-end;
+}
+#features .features-container .feature-item .feature-icon {
+  width: 50%;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+  position: relative;
+}
+#features .features-container .feature-item .feature-icon img {
+  width: 8rem;
+  height: 8rem;
+}
+#features .features-container .feature-item .feature-icon::after {
+  content: "";
+  height: 5px;
+  width: 60%;
+  background: rgb(160, 224, 24);
+  background: linear-gradient(270deg, rgb(160, 224, 24) 0%, rgba(255, 255, 255, 0) 100%);
+  position: absolute;
+  right: 0;
+  top: 15px;
+}
+#features .features-container .feature-item .feature-icon::before {
+  content: "";
+  height: 5px;
+  width: 80%;
+  background: rgb(160, 224, 24);
+  background: linear-gradient(90deg, rgb(160, 224, 24) 0%, rgba(255, 255, 255, 0) 100%);
+  position: absolute;
+  left: 0;
+  top: 0;
+}
+#features .features-container .feature-item .feature-details {
+  width: 50%;
+}
+#features .features-container .feature-item .feature-details .description {
+  margin-left: 25px;
+  list-style-type: square;
+  list-style-position: outside;
+  list-style-image: none;
+}
+
+#gds-section {
+  background-color: #fff;
+  padding: 3rem 0;
+  margin: 0;
+}
+#gds-section .gds-container {
+  display: grid;
+  grid-gap: 20px;
+  grid-template-columns: repeat(auto-fit, 250px);
+  grid-auto-flow: row;
+  width: 100%;
+  margin: 0 auto;
+  justify-content: center;
+  align-items: center;
+  padding: 0 10vw;
+}
+#gds-section .gds-container .gds-item {
+  width: 250px;
+  height: 250px;
+  position: relative;
+  box-shadow: 2px 2px 8px 2px rgba(110, 110, 110, 0.25);
+  background: #fdf4ff;
+  border-radius: 12px;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: flex-start;
+}
+#gds-section .gds-container .gds-item .gds-icon {
+  border-radius: 12px;
+  width: 100%;
+  height: 100%;
+}
+
+#partners {
+  background-color: #fafcf5;
+  padding-bottom: 5rem;
+}
+#partners .partners-container {
+  display: grid;
+  grid-gap: 40px;
+  grid-template-columns: repeat(auto-fit, 350px);
+  grid-auto-flow: row;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 5vw;
+  justify-content: center;
+  align-items: center;
+}
+#partners .partners-container .partners-item {
+  width: 100%;
+  height: 150px;
+  position: relative;
+  box-shadow: 2px 2px 8px 2px rgba(110, 110, 110, 0.25);
+  background: #fdf4ff;
+  border-radius: 12px;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+#partners .partners-container .partners-item .partners-icon {
+  border-radius: 12px;
+  width: auto;
+  height: 60%;
+}
+
+#featured-on {
+  background-color: #fff;
+  padding: 3rem 0;
+}
+#featured-on .featured-on-container {
+  display: grid;
+  grid-gap: 40px;
+  grid-template-columns: repeat(auto-fit, 300px);
+  grid-auto-flow: row;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 10vw;
+  justify-content: center;
+  align-items: center;
+}
+#featured-on .featured-on-container .featured-on-item {
+  width: 300px;
+  height: 300px;
+  position: relative;
+  box-shadow: 2px 2px 8px 2px rgba(110, 110, 110, 0.25);
+  background: #fdf4ff;
+  border-radius: 12px;
+  background-color: #fff;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+#featured-on .featured-on-container .featured-on-item .featured-on-icon {
+  border-radius: 12px;
+  width: 100%;
+  height: 100%;
+}
+
+#contact {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 2rem 0;
+  background-color: #fff;
+}
+#contact .form {
+  width: 50%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+#contact .form .form-group {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+#contact .form .form-group textarea,
+#contact .form .form-group input {
+  padding: 1.1rem 0.8rem;
+  margin: 0;
+  border-radius: 4px;
+  border: 1px solid #ebebeb;
+  background-color: #fbfbfb;
+}
+#contact .form .form-group textarea:focus,
+#contact .form .form-group input:focus {
+  outline: none;
+  border: 1px solid #6c8633;
+}
+#contact .form .form-group textarea::-moz-placeholder, #contact .form .form-group input::-moz-placeholder {
+  color: rgba(117, 117, 117, 0.3215686275) !important;
+}
+#contact .form .form-group textarea:-ms-input-placeholder, #contact .form .form-group input:-ms-input-placeholder {
+  color: rgba(117, 117, 117, 0.3215686275) !important;
+}
+#contact .form .form-group textarea::placeholder,
+#contact .form .form-group input::placeholder {
+  color: rgba(117, 117, 117, 0.3215686275) !important;
+}
+#contact .form .form-group label {
+  margin: 0;
+  padding-bottom: 0.4rem;
+  color: #4e4e4e;
+  font-size: 16px;
+  font-weight: 600;
+}
+#contact .form .form-submit {
+  padding: 0.8rem 6rem;
+  margin: 20px 0;
+  border-radius: 8px;
+  border: none;
+  background-color: #84a63d;
+  transition: all 0.5s ease;
+  color: #fff;
+  font-size: 16px !important;
+  font-weight: 600;
+}
+#contact .form .form-submit:hover {
+  background-color: #627a2f;
 }/*# sourceMappingURL=main.css.map */
