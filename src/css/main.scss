@@ -226,7 +226,7 @@ body {
         .feature-item {
             display: flex;
             width: 100%;
-            gap: 4rem;
+            gap: 10rem;
             &:nth-child(2) {
                 flex-direction: row-reverse;
                 .feature-icon {
@@ -238,13 +238,13 @@ body {
                         background: rgb(160, 224, 24);
                         background: linear-gradient( 270deg, rgba(160, 224, 24, 1) 0%, rgba(255, 255, 255, 0) 100%);
                         position: absolute;
-                        right: 0;
+                        left: 0;
                         top: 15px;
                     }
                     &::before {
                         content: '';
                         height: 5px;
-                        width: 80%;
+                        left: 0;
                     }
                 }
                 .feature-details {
@@ -253,6 +253,9 @@ body {
                     flex-direction: column;
                     align-items: flex-end;
                     justify-items: flex-end;
+                    .description {
+                        text-align: right;
+                    }
                 }
             }
             .feature-icon {
@@ -262,13 +265,13 @@ body {
                 align-items: center;
                 position: relative;
                 img {
-                    width: 8rem;
-                    height: 8rem;
+                    width: 15rem;
+                    height: 15rem;
                 }
                 &::after {
                     content: '';
                     height: 5px;
-                    width: 60%;
+                    width: 40%;
                     background: rgb(160, 224, 24);
                     background: linear-gradient( 270deg, rgba(160, 224, 24, 1) 0%, rgba(255, 255, 255, 0) 100%);
                     position: absolute;
@@ -278,11 +281,11 @@ body {
                 &::before {
                     content: '';
                     height: 5px;
-                    width: 80%;
+                    width: 40%;
                     background: rgb(160, 224, 24);
                     background: linear-gradient(90deg, rgba(160, 224, 24, 1) 0%, rgba(255, 255, 255, 0) 100%);
                     position: absolute;
-                    left: 0;
+                    right: 0;
                     top: 0;
                 }
             }
@@ -290,10 +293,7 @@ body {
                 width: 50%;
                 .feature-title {}
                 .description {
-                    margin-left: 25px;
-                    list-style-type: square;
-                    list-style-position: outside;
-                    list-style-image: none;
+                    list-style-type: none;
                 }
             }
         }
