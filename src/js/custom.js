@@ -1,5 +1,5 @@
-jQuery(document).ready(function() {
-	
+jQuery(document).ready(function () {
+
 	"use strict";
 	// Your custom js code goes here.
 
@@ -7,14 +7,14 @@ jQuery(document).ready(function() {
 		event.preventDefault();
 		//collect the form data using Id Selector what ever data you need to send to server
 		var data = {};
-		data.subscribe_email=$('#subscribe_email').val();
+		data.subscribe_email = $('#subscribe_email').val();
 		$.ajax({
 			url: '/subscribe',
 			data: JSON.stringify(data),
 			processData: false,
 			type: 'POST',
 			contentType: 'application/json'
-		}).done(function(res) {
+		}).done(function (res) {
 			if (res.success) {
 				//$("#subscribe_form").get(0).reset() // or $('form')[0].reset()
 				$("#subscribe_form").hide();
@@ -22,17 +22,28 @@ jQuery(document).ready(function() {
 				$('#subscribe_result').html('You have successfully subscribed as ' + res.email);
 			} else {
 				$('#error-group').css('display', 'block');
-				  var errors = JSON.parse(JSON.stringify(res.errors));
-				  var errorsContainer = $('#errors');
-				  errorsContainer.innerHTML = '';
-				  var errorsList = '';
+				var errors = JSON.parse(JSON.stringify(res.errors));
+				var errorsContainer = $('#errors');
+				errorsContainer.innerHTML = '';
+				var errorsList = '';
 
-				  for (var i = 0; i < errors.length; i++) {
+				for (var i = 0; i < errors.length; i++) {
 					errorsList += '<li>' + errors[i].msg + '</li>';
-				  }
-				  errorsContainer.html(errorsList);
-				  console.log('error...ajax' + errorsList);
+				}
+				errorsContainer.html(errorsList);
+				console.log('error...ajax' + errorsList);
 			}
-		  });
+		});
 	});
+
+	$(".request-demo-btn").click(function () {
+		$("#demoRequestModal").fadeIn(500);
+		$(".modal-container").fadeIn(1500);
+	});
+
+	$("#close-request-modal").click(function () {
+		$("#demoRequestModal").fadeOut("fast");
+	});
+
+
 });
