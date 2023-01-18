@@ -21,8 +21,9 @@
         <div class="overlay"></div>
         <div class="header-content">
             <h1 class="header-title">We <span class="highlight">connect</span> farmers to markets, services & information.</h1>
-            <p class="sub-heading">FoodPrint makes it easier for farmers to maintain records, access crop insurance and get to market. Accessible via <a href="https://live.foodprintlabs.com" target="_blank">Web</a> & <a href="https://wa.me/+27600189621" target="_blank">WhatsApp</a>.</p>
-            <a class="cta-button" href="#">Request Demo</a>
+            <p class="sub-heading">FoodPrint makes it easier for farmers to maintain records, access crop insurance and get to market. Accessible via Web & WhatsApp.</p>
+            <a class="cta-button request-demo-btn" href="#">Request Demo</a>
+
         </div>
     </section>
 
@@ -42,19 +43,19 @@
                 <p class="description"></p>
             </div>
             <div class="benefit-card">
-                <img src="/new_images/traceability.png" alt="traceability" class="icon">
-                <div class="feature-title">Farmer Production Records</div>
-                <p class="description"></p>
+                <img src="/new_images/production.png" alt="traceability" class="icon">
+                <div class="feature-title">Traceability</div>
+                <p class="description">"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem.</p>
             </div>
             <div class="benefit-card">
-                <img src="/new_images/traceability.png" alt="traceability" class="icon">
-                <div class="feature-title">Access to micro-insurance</div>
-                <p class="description"></p>
+                <img src="/new_images/finance.png" alt="traceability" class="icon">
+                <div class="feature-title">Traceability</div>
+                <p class="description">"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem.</p>
             </div>
             <div class="benefit-card">
-                <img src="/new_images/traceability.png" alt="traceability" class="icon">
-                <div class="feature-title">Access to markets</div>
-                <p class="description"></p>
+                <img src="/new_images/information.png" alt="traceability" class="icon">
+                <div class="feature-title">Traceability</div>
+                <p class="description">"Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem.</p>
             </div>
         </div>
     </section>
@@ -219,6 +220,39 @@
     <!-- start footer -->
    <!--  < include ./partials/footer >-->
         <!-- end footer -->
+
+
+
+        <div id="demoRequestModal">
+            <div class="overlay"></div>
+            <div class="modal-container">
+                <div class="modal-dialog">
+                    <div class="header">
+                        <h1 class="title">Request a demo</h1>
+                        <span id="close-request-modal" class="close-icon"><i class="fa-solid fa-xmark"></i></span>
+                    </div>
+                    <div class="form-container">
+
+                        <form method="post" action="/send/message" class="form">
+                            <div class="form-group">
+                                <label for="name" class="form-group">Name</label>
+                                <input id="name" name="name" placeholder="Name" />
+                            </div>
+                            <div class="form-group">
+                                <label for="email" class="form-group">Email</label>
+                                <input id="email" name="email" placeholder="Email" />
+                            </div>
+                            <div class="form-group">
+                                <label for="message" class="form-group">Message</label>
+                                <textarea id="message" name="message" placeholder="Message" cols="10" rows="4"></textarea>
+                            </div>
+                            <button type="submit" class="form-submit">Send</button>
+                        </form>
+
+                    </div>
+                </div>
+            </div>
+        </div>
 
         <div class="gototop js-top">
             <a href="#" class="js-gotop"><i class="icon-chevron-thin-up"></i></a>
