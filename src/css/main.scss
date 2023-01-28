@@ -494,9 +494,12 @@ body {
         align-items: center;
         .modal-dialog {
             width: 45%;
-            height: 80%;
+            height: 60%;
             background-color: #fff;
             border-radius: 8px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
             .header {
                 width: 100%;
                 padding: 1rem;
@@ -504,6 +507,7 @@ body {
                 align-items: center;
                 justify-content: center;
                 position: relative;
+                margin-bottom: auto;
                 &::before {
                     content: '';
                     bottom: 0;
@@ -537,6 +541,8 @@ body {
                 justify-content: center;
                 width: 100%;
                 padding: 1rem 0;
+                margin-bottom: auto;
+                margin-top: auto;
                 .form {
                     width: 80%;
                     display: flex;
@@ -546,6 +552,9 @@ body {
                         width: 100%;
                         display: flex;
                         flex-direction: column;
+                        .response {
+                            text-align: center;
+                        }
                         textarea,
                         input {
                             padding: 0.5rem;

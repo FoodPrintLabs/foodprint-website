@@ -466,9 +466,12 @@ body {
 }
 #demoRequestModal .modal-container .modal-dialog {
   width: 45%;
-  height: 80%;
+  height: 60%;
   background-color: #fff;
   border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
 }
 #demoRequestModal .modal-container .modal-dialog .header {
   width: 100%;
@@ -477,6 +480,7 @@ body {
   align-items: center;
   justify-content: center;
   position: relative;
+  margin-bottom: auto;
 }
 #demoRequestModal .modal-container .modal-dialog .header::before {
   content: "";
@@ -508,6 +512,8 @@ body {
   justify-content: center;
   width: 100%;
   padding: 1rem 0;
+  margin-bottom: auto;
+  margin-top: auto;
 }
 #demoRequestModal .modal-container .modal-dialog .form-container .form {
   width: 80%;
@@ -519,6 +525,9 @@ body {
   width: 100%;
   display: flex;
   flex-direction: column;
+}
+#demoRequestModal .modal-container .modal-dialog .form-container .form .form-group .response {
+  text-align: center;
 }
 #demoRequestModal .modal-container .modal-dialog .form-container .form .form-group textarea,
 #demoRequestModal .modal-container .modal-dialog .form-container .form .form-group input {

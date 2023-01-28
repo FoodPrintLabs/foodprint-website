@@ -37,13 +37,14 @@
     "gulp-sourcemaps": "latest",
     "gulp-uglify": "latest",
     "mocha": "^9.2.2",
-    "nodemon": "^1.19.1",
+    "nodemon": "^1.19.4",
     "prettier": "2.5.1",
     "sequelize-auto": "^0.8.4",
     "sequelize-cli": "^6.3.0",
     "watchify": "^3.11.1"
   },
   "dependencies": {
+    "@mailchimp/mailchimp_marketing": "^3.0.80",
     "algosdk": "^1.12.0",
     "axios": "^0.26.1",
     "body-parser": "^1.19.0",

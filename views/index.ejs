@@ -3,13 +3,22 @@
 
 <head>
     <% include ./partials/head %>
+        <!-- Begin Mailchimp Signup Form -->
+        <link href="//cdn-images.mailchimp.com/embedcode/classic-071822.css" rel="stylesheet" type="text/css">
+        <style type="text/css">
+            #mc_embed_signup {
+                background: #fff;
+                clear: left;
+                font: 14px Helvetica, Arial, sans-serif;
+                width: 600px;
+            }
+            /* Add your own Mailchimp form style overrides in your site stylesheet or in this style block. We recommend moving this block and the preceding CSS link to the HEAD of your HTML file. */
+        </style>
 </head>
 
 <body>
     <!-- START: navbar -->
-
     <!-- <div class="probootstrap-loader"></div> -->
-
     <header>
         <% include ./partials/header %>
     </header>
@@ -25,12 +34,9 @@
             <a class="cta-button request-demo-btn" href="#">Request Demo</a>
         </div>
     </section>
-
     <!-- END: header  -->
 
-
     <!-- START: Benefits -->
-
     <section id="benefits">
         <div class="section-header">
             <h1 class="section-title">Why Use Foodprint?</h1>
@@ -196,18 +202,18 @@
         <div class="section-header">
             <h1 class="section-title">Contact Us</h1>
         </div>
-        <form method="post" action="/send/message" class="form">
+        <form method="post" action="/contactform" class="form">
             <div class="form-group">
                 <label for="name" class="form-group">Name</label>
-                <input id="name" name="name" placeholder="Name" />
+                <input id="name" name="contact_name" placeholder="Name" />
             </div>
             <div class="form-group">
                 <label for="email" class="form-group">Email</label>
-                <input id="email" name="email" placeholder="Email" />
+                <input id="email" name="contact_email" placeholder="Email" />
             </div>
             <div class="form-group">
                 <label for="message" class="form-group">Message</label>
-                <textarea id="message" name="message" placeholder="Message" cols="20" rows="5"></textarea>
+                <textarea id="message" name="contact_message" placeholder="Message" cols="20" rows="5"></textarea>
             </div>
             <button type="submit" class="form-submit">Send</button>
         </form>
@@ -230,27 +236,49 @@
                         <h1 class="title">Request a demo</h1>
                         <span id="close-request-modal" class="close-icon"><i class="fa-solid fa-xmark"></i></span>
                     </div>
-                    <div class="form-container">
+                    <div class="form-container" id="mc_embed_signup">
 
-                        <form method="post" action="/send/message" class="form">
-                            <div class="form-group">
-                                <label for="name" class="form-group">Name</label>
-                                <input id="name" name="name" placeholder="Name" />
-                            </div>
+                        <form class="form validate" action="https://foodprintapp.us14.list-manage.com/subscribe/post?u=95746e622ecbb547ec9bdebf3&amp;id=e50371b271&amp;f_id=00798ee0f0" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form" target="_blank"
+                            novalidate>
                             <div class="form-group">
                                 <label for="email" class="form-group">Email</label>
-                                <input id="email" name="email" placeholder="Email" />
+                                <input placeholder="Email" type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL" required />
+                                <span id="mce-EMAIL-HELPERTEXT" class="helper_text"></span>
                             </div>
-                            <div class="form-group">
-                                <label for="message" class="form-group">Message</label>
-                                <textarea id="message" name="message" placeholder="Message" cols="10" rows="4"></textarea>
+                            <div hidden="true"><input type="hidden" name="tags" value="8309874"></div>
+                            <div id="mce-responses" class="foot">
+                                <div class="response" id="mce-error-response" style="display:none"></div>
+                                <div class="response" id="mce-success-response" style="display:none"></div>
                             </div>
                             <button type="submit" class="form-submit">Send</button>
                         </form>
-
                     </div>
                 </div>
             </div>
+        </div>
+        <script type='text/javascript' src='//s3.amazonaws.com/downloads.mailchimp.com/js/mc-validate.js'></script>
+        <script type='text/javascript'>
+            (function($) {
+                window.fnames = new Array();
+                window.ftypes = new Array();
+                fnames[0] = 'EMAIL';
+                ftypes[0] = 'email';
+                fnames[1] = 'FNAME';
+                ftypes[1] = 'text';
+                fnames[2] = 'LNAME';
+                ftypes[2] = 'text';
+                fnames[3] = 'ADDRESS';
+                ftypes[3] = 'address';
+                fnames[4] = 'PHONE';
+                ftypes[4] = 'phone';
+                fnames[5] = 'BIRTHDAY';
+                ftypes[5] = 'birthday';
+            }(jQuery));
+            var $mcj = jQuery.noConflict(true);
+        </script>
+        <!--End mc_embed_signup-->
+
+        </div>
         </div>
 
         <div class="gototop js-top">
