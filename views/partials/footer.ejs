@@ -39,9 +39,9 @@
             <div class="section" id="">
                 <h4 class="heading">Subscribe</h4>
                 <p>Be part of the FoodPrint community and receive updates.</p>
-                <form id="subscribe-form">
+                <form id="subscribe-form" method="post" action="/api/newsletter/subscribe">
                     <div class="form-field">
-                        <input type="email" placeholder="Enter your email" required>
+                        <input type="email" name="email" placeholder="Enter your email" required>
                         <button type="submit">Subscribe</button>
                     </div>
                 </form>

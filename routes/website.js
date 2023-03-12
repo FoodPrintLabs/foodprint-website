@@ -1,19 +1,11 @@
-var express = require('express');
+const express = require('express');
 const nodemailer = require('nodemailer');
 const { check, validationResult, sanitizeParam } = require('express-validator');
-var router = express.Router();
-
-var initModels = require('../models/init-models');
-var sequelise = require('../config/db/db_sequelise');
+const router = express.Router();
 const CUSTOM_ENUMS = require('../utils/enums');
-const uuidv4 = require('uuid/v4');
+require('dotenv').config();
 
-var models = initModels(sequelise);
-
-//emailer configuration
-// Testing Emails Pattern
-// when testing emails, in NODE_ENV=development, set EMAIL_OVERRIDE
-// if EMAIL_OVERRIDE is set, send email to it's value, prepend subject line with [TEST EMAIL], include intended recipients in the body
+// Create a new email object
 let transporter = nodemailer.createTransport({
   service: CUSTOM_ENUMS.GMAIL,
   auth: {
@@ -67,7 +59,7 @@ router.get('/contact', function (req, res) {
   res.render('contact', { user: req.user, page_name: 'contact' });
 });
 
-//return template for what is at the market this week
+// return template for what is at the market this week
 router.get(
   '/weekly',
   require('connect-ensure-login').ensureLoggedIn({ redirectTo: '/app/auth/login' }),
@@ -91,41 +83,36 @@ router.get('/privacy', function (req, res) {
   res.render('privacypolicy', { user: req.user, page_name: 'privacy' });
 });
 
+// Declare the mailing client list
+const mailchimpClient = require("@mailchimp/mailchimp_marketing");
+
+mailchimpClient.setConfig({
+  apiKey: process.env.MAILCHIMP_APIKEY,
+  server: process.env.MAILCHIP_EMAIL_SERVER_PREFIX,
+});
+
 //subscribe XmlHTTP request
 router.post(
-  '/subscribe',
+  '/api/newsletter/subscribe',
   [
-    //check('sample_name').not().isEmpty().withMessage('Name must have more than 5 characters'),
-    //check('sample_classYear', 'Class Year should be a number').not().isEmpty(),
-    //check('weekday', 'Choose a weekday').optional(),
-    check('subscribe_email', 'Your email is not valid').not().isEmpty().isEmail().normalizeEmail(),
+    check('email', 'Your email is not valid').not().isEmpty().isEmail().normalizeEmail(),
   ],
-  function (req, res) {
+  async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       res.json({ errors: errors.array(), success: false });
     } else {
-      // const subscriber_email = req.body.subscribe_email;
-      // const subscriber_datetime = new Date();
-      // const subscriber_firstname = '';
-      // const subscriber_surname = '';
-      let data = {
-        firstname: '',
-        surname: '',
-        email: req.body.subscribe_email,
-        logdatetime: new Date(),
-      };
+      // Get the subscriber email
+      const subscriber_email = req.body.subscribe_email;
 
       try {
-        models.FoodprintSubscription.create(data)
-          .then(subscriber => res.json({ success: true, email: subscriber.email }))
-          .catch(err => {
-            console.error('error', err);
-            res.status.json({ err: err });
-          });
+        const response = await mailchimpClient.lists.addListMember(process.env.MAILCHIP_EMAIL_LIST_ID, {
+          email_address: subscriber_email,
+          status: "subscribed",
+        });
+        console.log(response);
       } catch (e) {
         //this will eventually be handled by your error handling middleware
-        next(e);
         res.json({ success: false, errors: e });
       }
     }
@@ -136,10 +123,10 @@ router.post(
 router.post(
   '/contactform',
   [
-    check('contact_email', 'Contact email is not valid').not().isEmpty().isEmail().normalizeEmail(),
-    check('contact_message', 'Contact message should not be empty').not().isEmpty(),
-    check('contact_fname', 'Contact first name should not be empty').not().isEmpty(),
-    check('contact_lname', 'Contact last name should not be empty').not().isEmpty(),
+    // check('contact_email', 'Contact email is not valid').not().isEmpty().isEmail().normalizeEmail(),
+    // check('contact_message', 'Contact message should not be empty').not().isEmpty(),
+    // check('contact_fname', 'Contact first name should not be empty').not().isEmpty(),
+    // check('contact_lname', 'Contact last name should not be empty').not().isEmpty(),
   ],
   function (req, res) {
     const errors = validationResult(req);
@@ -147,8 +134,9 @@ router.post(
       res.json({ errors: errors.array(), success: false });
     } else {
       var contact_email = req.body.contact_email;
-      var contact_fname = req.body.contact_fname;
-      var contact_lname = req.body.contact_lname;
+      var contact_name = req.body.contact_name;
+      //var contact_lname = req.body.contact_lname;
+      //var contact_message = req.body.contact_message;
       var contact_message = req.body.contact_message;
       var contact_datetime = new Date();
       var contact_subject = 'FoodPrint Website Contact Enquiry';
@@ -158,15 +146,13 @@ router.post(
         '</p><p>Email Message: ' +
         contact_message +
         '</p><br><br><p>Sent from https://www.foodprintlabs.com/contact by </p>' +
-        contact_fname +
-        ' ' +
-        contact_lname +
+        contact_name +
         ' (' +
         contact_datetime +
         ').';
 
       let mailOptions = {
-        to: [process.env.EMAIL_ADDRESS, process.env.TEST_EMAIL_ADDRESS],
+        to: "nkululekombhele6017@gmail.com",
         subject: contact_subject,
         html: contact_message_formatted,
       };
