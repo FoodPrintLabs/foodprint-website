@@ -114,6 +114,28 @@
 
     <!-- END: Features -->
 
+    <!-- START: Subscribe Section -->
+
+    <section id="subscribe-section">
+        <div class="section-header">
+            <h1 class="section-title">Subscribe</h1>
+        </div>
+        <p>Be part of the FoodPrint community and receive updates.</p>
+        <form class="form" id="subscribe-form" method="post" action="/api/newsletter/subscribe">
+            <div class="form-group">
+                <input id="email" name="email" placeholder="Enter your email" />
+            </div>
+            <button type="submit" class="form-submit">SUBSCRIBE</button>
+        </form>
+        <text id="subscribe_result"></text>
+        <div class="alert-danger " id="error-group " style="display: none ">
+            <ul id="errors "></ul>
+        </div>
+    </section>
+
+    <!-- END: Subscribe Section -->
+
+
     <!-- START: GDS -->
 
     <section id="gds-section">
@@ -213,7 +235,7 @@
 
 
     <!-- start footer -->
-   <!--  < include ./partials/footer >-->
+    <% include ./partials/footer %>
         <!-- end footer -->
 
 
