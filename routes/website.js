@@ -123,24 +123,21 @@ router.post(
 router.post(
   '/contactform',
   [
-    // check('contact_email', 'Contact email is not valid').not().isEmpty().isEmail().normalizeEmail(),
-    // check('contact_message', 'Contact message should not be empty').not().isEmpty(),
-    // check('contact_fname', 'Contact first name should not be empty').not().isEmpty(),
-    // check('contact_lname', 'Contact last name should not be empty').not().isEmpty(),
+    check('contact_email', 'Contact email is not valid').not().isEmpty().isEmail().normalizeEmail(),
+    check('contact_message', 'Contact message should not be empty').not().isEmpty(),
+    check('contact_name', 'Contact first name should not be empty').not().isEmpty(),
   ],
   function (req, res) {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       res.json({ errors: errors.array(), success: false });
     } else {
-      var contact_email = req.body.contact_email;
-      var contact_name = req.body.contact_name;
-      //var contact_lname = req.body.contact_lname;
-      //var contact_message = req.body.contact_message;
-      var contact_message = req.body.contact_message;
-      var contact_datetime = new Date();
-      var contact_subject = 'FoodPrint Website Contact Enquiry';
-      var contact_message_formatted =
+      let contact_email = req.body.contact_email;
+      let contact_name = req.body.contact_name;
+      let contact_message = req.body.contact_message;
+      let contact_datetime = new Date();
+      let contact_subject = 'FoodPrint Website Contact Enquiry';
+      let contact_message_formatted =
         '<p>Email Sender: ' +
         contact_email +
         '</p><p>Email Message: ' +
@@ -152,7 +149,7 @@ router.post(
         ').';
 
       let mailOptions = {
-        to: "nkululekombhele6017@gmail.com",
+        to: contact_email,
         subject: contact_subject,
         html: contact_message_formatted,
       };
