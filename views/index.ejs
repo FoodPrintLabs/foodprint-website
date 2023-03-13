@@ -120,12 +120,20 @@
             <h1 class="section-title">Subscribe</h1>
         </div>
         <p>Be part of the FoodPrint community and receive updates.</p>
-        <form class="form" id="subscribe-form" method="post" action="/api/newsletter/subscribe">
+        <form class="form validate" id="subscribe-form" action="https://foodprintapp.us14.list-manage.com/subscribe/post?u=95746e622ecbb547ec9bdebf3&amp;id=e50371b271&amp;f_id=00798ee0f0" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form"
+            target="_blank" novalidate>
             <div class="form-group">
-                <input id="email" name="email" placeholder="Enter your email" />
+                <input placeholder="Email" type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL" required />
+                <span id="mce-EMAIL-HELPERTEXT" class="helper_text"></span>
             </div>
-            <button type="submit" class="form-submit">SUBSCRIBE</button>
+            <div hidden="true"><input type="hidden" name="tags" value="8309874"></div>
+            <div id="mce-responses" class="foot">
+                <div class="response" id="mce-error-response" style="display:none"></div>
+                <div class="response" id="mce-success-response" style="display:none"></div>
+            </div>
+            <button type="submit" class="form-submit">Send</button>
         </form>
+
         <text id="subscribe_result"></text>
         <div class="alert-danger " id="error-group " style="display: none">
             <ul id="errors "></ul>
