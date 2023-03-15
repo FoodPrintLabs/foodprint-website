@@ -14,6 +14,16 @@ body {
   border-radius: 8px;
 }
 
+#demo_send_clicked {
+  font-size: 1.5rem;
+  font-weight: bold;
+  padding: 1rem 3.5rem;
+  background-color: #eafcc0;
+  color: #6c8633;
+  border-radius: 8px;
+  z-index: 100;
+}
+
 #navbar {
   margin: 0;
   padding: 0 !important;

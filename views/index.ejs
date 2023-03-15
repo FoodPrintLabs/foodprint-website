@@ -20,7 +20,7 @@
         <div class="header-content">
             <h1 class="header-title">We <span class="highlight">connect</span> farmers to markets, services & information.</h1>
             <p class="sub-heading">FoodPrint makes it easier for farmers to maintain records, access crop insurance and get to market. Accessible via <a href="https://live.foodprintlabs.com" target="_blank">Web</a> & <a href="https://wa.me/+27600189621" target="_blank">WhatsApp</a>.</p>
-            <a class="cta-button request-demo-btn" href="https://live.foodprintlabs.com/app/auth/login/">Request Demo</a>
+            <a class="cta-button request-demo-btn">Request Demo</a>
         </div>
     </section>
 
@@ -236,7 +236,7 @@
             </div>
             <button type="submit" class="form-submit">Send</button>
         </form>
-        <text id="contact_send_clicked"></text>
+        <text id="contact_send_clicked" style="display: none"></text>
         <text id="contact_result"></text>
         <div class="alert-danger" id="contact_error_group" style="display: none">
             <ul id="contact_errors"></ul>
@@ -270,13 +270,13 @@
                                 <label for="email" class="form-group">Email</label>
                                 <input id="email" name="email" placeholder="Email" />
                             </div>
-                            <div class="form-group">
+                            <!--       <div class="form-group">
                                 <label for="message" class="form-group">Message</label>
                                 <textarea id="message" name="message" placeholder="Message" cols="10" rows="4"></textarea>
-                            </div>
+                            </div> -->
                             <button type="submit" class="form-submit">Send</button>
                         </form>
-                        <text id="contact_send_clicked"></text>
+                        <text id="demo_send_clicked" style="display: none"></text>
                         <text id="contact_result"></text>
                         <div class="alert-danger" id="contact_error_group" style="display: none">
                             <ul id="contact_errors"></ul>
@@ -301,6 +301,7 @@
                         $("#contact_form").hide();
                         $('#contact_error_group').hide();
                         $('#contact_result').html('');
+                        $('#contact_send_clicked').show();
                         $('#contact_send_clicked').html('Thanks for getting in touch.');
                         $.ajax({
                             url: '/contactform',
@@ -337,10 +338,11 @@
                         data.contact_name = $('#name').val();
                         data.contact_email = $('#email').val();
                         data.contact_message = $('#message').val();
-                        $("#contact_form").hide();
+                        $("#demo_form").hide();
                         $('#contact_error_group').hide();
                         $('#contact_result').html('');
-                        $('#contact_send_clicked').html('Thanks for getting in touch.');
+                        $('#demo_send_clicked').show()
+                        $('#demo_send_clicked').html('We will be in touch. Thanks!');
                         $.ajax({
                             url: '/contactform',
                             data: JSON.stringify(data),

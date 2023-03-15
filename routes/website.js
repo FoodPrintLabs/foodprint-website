@@ -3,6 +3,7 @@ const nodemailer = require('nodemailer');
 const { check, validationResult, sanitizeParam } = require('express-validator');
 const router = express.Router();
 const CUSTOM_ENUMS = require('../utils/enums');
+const customSendEmail = require('../config/email/email');
 require('dotenv').config();
 
 // Create a new email object
@@ -137,6 +138,9 @@ router.post(
       let contact_message = req.body.contact_message;
       let contact_datetime = new Date();
       let contact_subject = 'FoodPrint Website Contact Enquiry';
+      if (contact_message.length === 0) {
+        contact_subject = 'FoodPrint Website Request Demo Enquiry';
+      }
       let contact_message_formatted =
         '<p>Email Sender: ' +
         contact_email +
@@ -148,21 +152,9 @@ router.post(
         contact_datetime +
         ').';
 
-      let mailOptions = {
-        to: contact_email,
-        subject: contact_subject,
-        html: contact_message_formatted,
-      };
-
-      transporter.sendMail(mailOptions, function (error, data) {
-        if (error) {
-          console.log('Error sending email - ', error);
-          res.status.json({ err: error });
-        } else {
-          console.log('Email successfully sent - ', data);
-          res.json({ success: true });
-        }
-      });
+      // Send Email Using The Config/Email/.. Function
+      // customeSendEmail(recipient, subject, body)
+      customSendEmail(contact_email, contact_subject, contact_message_formatted);
     }
   }
 );
