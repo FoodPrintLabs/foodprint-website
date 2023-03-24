@@ -8,7 +8,6 @@
 <body>
     <!-- START: navbar -->
 
-    <!-- <div class="probootstrap-loader"></div> -->
 
     <header>
         <% include ./partials/header %>
@@ -21,7 +20,7 @@
         <div class="header-content">
             <h1 class="header-title">We <span class="highlight">connect</span> farmers to markets, services & information.</h1>
             <p class="sub-heading">FoodPrint makes it easier for farmers to maintain records, access crop insurance and get to market. Accessible via <a href="https://live.foodprintlabs.com" target="_blank">Web</a> & <a href="https://wa.me/+27600189621" target="_blank">WhatsApp</a>.</p>
-            <a class="cta-button request-demo-btn" href="https://live.foodprintlabs.com/app/auth/login/">Request Demo</a>
+            <a class="cta-button request-demo-btn">Request Demo</a>
         </div>
     </section>
 
@@ -114,7 +113,37 @@
 
     <!-- END: Features -->
 
-    <!-- START: GDS -->
+    <!-- START: Subscribe Section -->
+
+    <section id="subscribe-section">
+        <div class="section-header">
+            <h1 class="section-title">Subscribe</h1>
+        </div>
+        <p>Be part of the FoodPrint community and receive updates.</p>
+        <form class="form validate" id="subscribe-form" action="https://foodprintapp.us14.list-manage.com/subscribe/post?u=95746e622ecbb547ec9bdebf3&amp;id=e50371b271&amp;f_id=00798ee0f0" method="post" id="mc-embedded-subscribe-form" name="mc-embedded-subscribe-form"
+            target="_blank" novalidate>
+            <div class="form-group">
+                <input placeholder="Email" type="email" value="" name="EMAIL" class="required email" id="mce-EMAIL" required />
+                <span id="mce-EMAIL-HELPERTEXT" class="helper_text"></span>
+            </div>
+            <div hidden="true"><input type="hidden" name="tags" value="8309874"></div>
+            <div id="mce-responses" class="foot">
+                <div class="response" id="mce-error-response" style="display:none"></div>
+                <div class="response" id="mce-success-response" style="display:none"></div>
+            </div>
+            <button type="submit" class="form-submit">Send</button>
+        </form>
+
+        <text id="subscribe_result"></text>
+        <div class="alert-danger " id="error-group " style="display: none">
+            <ul id="errors "></ul>
+        </div>
+    </section>
+
+    <!-- END: Subscribe Section -->
+
+
+    <!-- START: DGS -->
 
     <section id="gds-section">
         <div class="section-header">
@@ -136,7 +165,7 @@
         </div>
     </section>
 
-    <!-- END: GDS -->
+    <!-- END: DGS -->
 
 
     <!-- START: Partners -->
@@ -192,28 +221,32 @@
         <div class="section-header">
             <h1 class="section-title">Contact Us</h1>
         </div>
-        <form method="post" action="/send/message" class="form">
+        <form id="contact_form" method="post" class="form">
             <div class="form-group">
                 <label for="name" class="form-group">Name</label>
-                <input id="name" name="name" placeholder="Name" />
+                <input id="contact_name" name="name" placeholder="Name" />
             </div>
             <div class="form-group">
                 <label for="email" class="form-group">Email</label>
-                <input id="email" name="email" placeholder="Email" />
+                <input id="contact_email" name="email" placeholder="Email" />
             </div>
             <div class="form-group">
                 <label for="message" class="form-group">Message</label>
-                <textarea id="message" name="message" placeholder="Message" cols="20" rows="5"></textarea>
+                <textarea id="contact_message" name="message" placeholder="Message" cols="20" rows="5"></textarea>
             </div>
             <button type="submit" class="form-submit">Send</button>
         </form>
+        <text id="contact_send_clicked" style="display: none"></text>
+        <text id="contact_result"></text>
+        <div class="alert-danger" id="contact_error_group" style="display: none">
+            <ul id="contact_errors"></ul>
     </section>
 
     <!-- END: Contact US -->
 
 
     <!-- start footer -->
-   <!--  < include ./partials/footer >-->
+    <% include ./partials/footer %>
         <!-- end footer -->
 
 
@@ -228,7 +261,7 @@
                     </div>
                     <div class="form-container">
 
-                        <form method="post" action="/send/message" class="form">
+                        <form id="demo_form" method="post" class="form">
                             <div class="form-group">
                                 <label for="name" class="form-group">Name</label>
                                 <input id="name" name="name" placeholder="Name" />
@@ -237,25 +270,113 @@
                                 <label for="email" class="form-group">Email</label>
                                 <input id="email" name="email" placeholder="Email" />
                             </div>
-                            <div class="form-group">
+                            <!--       <div class="form-group">
                                 <label for="message" class="form-group">Message</label>
                                 <textarea id="message" name="message" placeholder="Message" cols="10" rows="4"></textarea>
-                            </div>
+                            </div> -->
                             <button type="submit" class="form-submit">Send</button>
                         </form>
-
+                        <text id="demo_send_clicked" style="display: none"></text>
+                        <text id="contact_result"></text>
+                        <div class="alert-danger" id="contact_error_group" style="display: none">
+                            <ul id="contact_errors"></ul>
+                        </div>
                     </div>
                 </div>
             </div>
-        </div>
 
-        <div class="gototop js-top">
-            <a href="#" class="js-gotop"><i class="icon-chevron-thin-up"></i></a>
-        </div>
+            <div class="gototop js-top">
+                <a href="#" class="js-gotop"><i class="icon-chevron-thin-up"></i></a>
+            </div>
 
-        <script src="js/scripts.min.js"></script>
-        <script src="js/main.min.js"></script>
-        <script src="js/custom.js"></script>
+            <script>
+                $(document).ready(function() {
+                    $('#contact_form').submit(function(event) {
+                        event.preventDefault();
+                        //collect the form data using Id Selector what ever data you need to send to server
+                        var data = {};
+                        data.contact_name = $('#contact_name').val();
+                        data.contact_email = $('#contact_email').val();
+                        data.contact_message = $('#contact_message').val();
+                        $("#contact_form").hide();
+                        $('#contact_error_group').hide();
+                        $('#contact_result').html('');
+                        $('#contact_send_clicked').show();
+                        $('#contact_send_clicked').html('Thanks for getting in touch.');
+                        $.ajax({
+                            url: '/contactform',
+                            data: JSON.stringify(data),
+                            processData: false,
+                            type: 'POST',
+                            contentType: 'application/json'
+                        }).done(function(res) {
+                            if (res.success) {
+                                //$("#contact_form").get(0).reset() // or $('form')[0].reset()
+                                $("#contact_form").hide();
+                                $('#contact_error_group').hide();
+                                $('#contact_result').html('Message sent.');
+                            } else {
+                                $("#contact_form").show();
+                                $('#contact_result').html('Message failed to send. Please try again.');
+                                $('#contact_error_group').css('display', 'block');
+                                var errors = JSON.parse(JSON.stringify(res.errors));
+                                var errorsContainer = $('#contact_errors');
+                                errorsContainer.innerHTML = '';
+                                var errorsList = '';
+
+                                for (var i = 0; i < errors.length; i++) {
+                                    errorsList += '<li>' + errors[i].msg + '</li>';
+                                }
+                                errorsContainer.html(errorsList);
+                            }
+                        });
+                    });
+                    $('#demo_form').submit(function(event) {
+                        event.preventDefault();
+                        //collect the form data using Id Selector what ever data you need to send to server
+                        var data = {};
+                        data.contact_name = $('#name').val();
+                        data.contact_email = $('#email').val();
+                        data.contact_message = $('#message').val();
+                        $("#demo_form").hide();
+                        $('#contact_error_group').hide();
+                        $('#contact_result').html('');
+                        $('#demo_send_clicked').show()
+                        $('#demo_send_clicked').html('We will be in touch. Thanks!');
+                        $.ajax({
+                            url: '/contactform',
+                            data: JSON.stringify(data),
+                            processData: false,
+                            type: 'POST',
+                            contentType: 'application/json'
+                        }).done(function(res) {
+                            if (res.success) {
+                                //$("#contact_form").get(0).reset() // or $('form')[0].reset()
+                                $("#contact_form").hide();
+                                $('#contact_error_group').hide();
+                                $('#contact_result').html('Message sent.');
+                            } else {
+                                $("#contact_form").show();
+                                $('#contact_result').html('Message failed to send. Please try again.');
+                                $('#contact_error_group').css('display', 'block');
+                                var errors = JSON.parse(JSON.stringify(res.errors));
+                                var errorsContainer = $('#contact_errors');
+                                errorsContainer.innerHTML = '';
+                                var errorsList = '';
+
+                                for (var i = 0; i < errors.length; i++) {
+                                    errorsList += '<li>' + errors[i].msg + '</li>';
+                                }
+                                errorsContainer.html(errorsList);
+                            }
+                        });
+                    });
+                });
+            </script>
+
+            <script src="js/scripts.min.js"></script>
+            <script src="js/main.min.js"></script>
+            <script src="js/custom.js"></script>
 
 </body>
 

@@ -274,10 +274,71 @@ body {
                 }
                 .feature-details {
                     width: 95%;
-                    .feature-title {}
                     .description {
                         list-style-type: none;
                     }
+                }
+            }
+        }
+    }
+    // -------------------------- Subscribe Section Form --------------------------
+    #subscribe-section {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        padding: 2rem 0;
+        background-color: #ecffec;
+        .section-header {
+            padding: 0.8rem 0;
+        }
+        .form {
+            width: 95%;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            .form-group {
+                width: 85%;
+                display: flex;
+                flex-direction: column;
+                textarea,
+                input {
+                    padding: 0.8rem 0.6rem;
+                    margin: 0;
+                    border-radius: 4px;
+                    border: 1px solid #ebebeb;
+                    background-color: #fbfbfb;
+                    &:focus {
+                        outline: none;
+                        border: 1px solid #6c8633;
+                    }
+                    &::placeholder {
+                        color: #5a5a5a52 !important;
+                    }
+                }
+                label {
+                    margin: 0;
+                    padding-bottom: 0.4rem;
+                    color: #4e4e4e;
+                    font: {
+                        size: 16px;
+                        weight: 600;
+                    }
+                }
+            }
+            .form-submit {
+                padding: 0.8rem 6rem;
+                margin: 20px 0;
+                border-radius: 8px;
+                border: none;
+                background-color: $primary-color;
+                transition: all 0.5s ease;
+                color: #fff;
+                font: {
+                    size: 16px !important;
+                    weight: 600;
+                }
+                &:hover {
+                    background-color: #627a2f;
                 }
             }
         }
