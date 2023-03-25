@@ -6,15 +6,6 @@ const CUSTOM_ENUMS = require('../utils/enums');
 const customSendEmail = require('../config/email/email');
 require('dotenv').config();
 
-// Create a new email object
-let transporter = nodemailer.createTransport({
-  service: CUSTOM_ENUMS.GMAIL,
-  auth: {
-    user: process.env.EMAIL_ADDRESS,
-    pass: process.env.EMAIL_PASSWORD,
-  },
-});
-
 //about
 router.get('/about', function (req, res) {
   res.render('about', { user: req.user, page_name: 'about' });
@@ -120,6 +111,44 @@ router.post(
   }
 );
 
+
+//contactform XmlHTTP request
+router.post(
+  '/demoform',
+  [
+    check('contact_email', 'Contact email is not valid').not().isEmpty().isEmail().normalizeEmail(),
+    check('contact_name', 'Contact  name should not be empty').not().isEmpty(),
+  ],
+  function (req, res) {
+    const errors = validationResult(req);
+    if (!errors.isEmpty()) {
+      res.json({ errors: errors.array(), success: false });
+    } else {
+      let contact_form_receiver_email = process.env.CONTACT_FORM_EMAIL_ADDRESS;
+      let contact_email = req.body.contact_email;
+      let contact_name = req.body.contact_name;
+      let contact_message = req.body.contact_message;
+      let contact_datetime = new Date();
+      let contact_subject = 'FoodPrint Website Request Demo Enquiry';
+
+      let contact_message_formatted =
+        '<p>Email Sender Name: ' +
+        contact_name +
+        '<p>Email Sender Email: ' +
+        contact_email +
+        '</p><p>Email Sent on: ' +
+        contact_datetime +
+        '</p><p>Email Message: ' +
+        'Demo requested ' +
+        '</p><br><br><p>Sent from FoodPrint Labs Website Demo Form.</p>';
+
+      // Send Email Using The Config/Email/.. Function
+      // customSendEmail(recipient, subject, body)
+      customSendEmail(contact_form_receiver_email, contact_subject, contact_message_formatted);
+    }
+  }
+);
+
 //contactform XmlHTTP request
 router.post(
   '/contactform',
@@ -133,28 +162,27 @@ router.post(
     if (!errors.isEmpty()) {
       res.json({ errors: errors.array(), success: false });
     } else {
+      let contact_form_receiver_email = process.env.CONTACT_FORM_EMAIL_ADDRESS;
       let contact_email = req.body.contact_email;
       let contact_name = req.body.contact_name;
       let contact_message = req.body.contact_message;
       let contact_datetime = new Date();
       let contact_subject = 'FoodPrint Website Contact Enquiry';
-      if (contact_message.length === 0) {
-        contact_subject = 'FoodPrint Website Request Demo Enquiry';
-      }
+
       let contact_message_formatted =
-        '<p>Email Sender: ' +
+        '<p>Email Sender Name: ' +
+        contact_name +
+        '<p>Email Sender Email: ' +
         contact_email +
+        '</p><p>Email Sent on: ' +
+        contact_datetime +
         '</p><p>Email Message: ' +
         contact_message +
-        '</p><br><br><p>Sent from https://www.foodprintlabs.com/contact by </p>' +
-        contact_name +
-        ' (' +
-        contact_datetime +
-        ').';
+        '</p><br><br><p>Sent from FoodPrint Labs Website Contact Form.</p>';
 
       // Send Email Using The Config/Email/.. Function
-      // customeSendEmail(recipient, subject, body)
-      customSendEmail(contact_email, contact_subject, contact_message_formatted);
+      // customSendEmail(recipient, subject, body)
+      customSendEmail(contact_form_receiver_email, contact_subject, contact_message_formatted);
     }
   }
 );
