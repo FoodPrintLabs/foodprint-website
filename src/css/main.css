@@ -660,14 +660,13 @@ body {
 }
 #footer .footer-container {
   z-index: 30 !important;
-  padding: 0rem 5vw;
+  padding: 1rem 5vw;
   position: relative;
   margin: 0;
 }
 #footer .footer-container .footer-sections {
   display: flex;
   justify-content: space-between;
-  padding: 1rem 0;
 }
 #footer .footer-container .footer-sections .section .heading {
   color: #84a63d;
@@ -721,10 +720,12 @@ body {
   display: flex;
   justify-content: space-between;
   padding: 0;
-  margin-top: 1rem;
+  height: 100%;
+  align-items: center;
 }
 #footer .footer-container .copyright-social-links .copyright p a {
   color: #c58000;
+  justify-self: center;
 }
 #footer .footer-container .copyright-social-links .social-links-list {
   display: flex;
