@@ -276,7 +276,7 @@
                             </div> -->
                             <button type="submit" class="form-submit">Send</button>
                         </form>
-                        <text id="demo_send_clicked" style="display: none"></text>
+                        <text id="demo_send_clicked" >vc</text>
                         <text id="demo_result"></text>
                         <div class="alert-danger" id="demo_error_group" style="display: none">
                             <ul id="demo_errors"></ul>
@@ -301,8 +301,6 @@
                         $("#contact_form").hide();
                         $('#contact_error_group').hide();
                         $('#contact_result').html('');
-                        $('#contact_send_clicked').show();
-                        $('#contact_send_clicked').html('Thanks for getting in touch.');
                         $.ajax({
                             url: '/contactform',
                             data: JSON.stringify(data),
@@ -315,6 +313,8 @@
                                 $("#contact_form").hide();
                                 $('#contact_error_group').hide();
                                 $('#contact_result').html('Message sent.');
+                                $('#contact_send_clicked').show();
+                                $('#contact_send_clicked').html('Thanks for getting in touch.');
                             } else {
                                 $("#contact_form").show();
                                 $('#contact_result').html('Message failed to send. Please try again.');
@@ -341,7 +341,7 @@
                         $("#demo_form").hide();
                         $('#demo_error_group').hide();
                         $('#demo_result').html('');
-                        $('#demo_send_clicked').show()
+                        //$('#demo_send_clicked').show()
                         //$('#demo_send_clicked').html('We will be in touch. Thanks!');
                         $.ajax({
                             url: '/demoform',
@@ -370,6 +370,7 @@
                                 for (var i = 0; i < errors.length; i++) {
                                     errorsList += '<li>' + errors[i].msg + '</li>';
                                 }
+
                                 errorsContainer.html(errorsList);
                             }
                         });
