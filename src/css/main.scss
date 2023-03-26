@@ -693,7 +693,7 @@ body {
     }
     .footer-container {
         z-index: 30 !important;
-        padding: 1rem 5vw;
+        padding: 2rem 5vw;
         position: relative;
         margin: 0;
         .footer-sections {
@@ -755,22 +755,40 @@ body {
         .copyright-social-links {
             display: flex;
             justify-content: space-between;
-            padding: 0;
             height: 100%;
             align-items: center;
             //margin-top: 1rem;
             .copyright {
-                p a {
-                    color: #c58000;
-                    justify-self: center;
+                p {
+                    padding: 0;
+                    margin: 0;
+                    a {
+                        color: #c58000;
+                        justify-self: center;
+                    }
                 }
             }
             .social-links-list {
                 display: flex;
                 list-style-type: none;
+                align-items: center;
                 gap: 1rem;
-                li a i {
-                    font-size: 1.5rem;
+                padding: 0;
+                margin: 0;
+                li {
+                    display: grid;
+                    place-items: center;
+                    padding: 0;
+                    margin: 0;
+                    a {
+                        display: grid;
+                        place-items: center;
+                        padding: 0;
+                        margin: 0;
+                        i {
+                            font-size: 1.5rem;
+                        }
+                    }
                 }
             }
         }
