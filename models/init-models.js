@@ -1,11 +1,15 @@
-var DataTypes = require('sequelize').DataTypes;
-var _FoodprintSubscription = require('./foodprint_subscription');
+const  DataTypes = require('sequelize').DataTypes;
+const  _FoodprintSubscription = require('./foodprint_subscription');
+const  _FoodprintContact = require('./foodprint_contact');
+const  _FoodprintEmail = require('./foodprint_email');
 
 function initModels(sequelize) {
-  var FoodprintSubscription = _FoodprintSubscription(sequelize, DataTypes);
+  const FoodprintSubscription = _FoodprintSubscription(sequelize, DataTypes);
+  const FoodprintContact = _FoodprintContact(sequelize, DataTypes);
+  const FoodprintEmail = _FoodprintEmail(sequelize, DataTypes);
 
   return {
-    FoodprintSubscription,
+    FoodprintSubscription, FoodprintContact, FoodprintEmail
   };
 }
 module.exports = initModels;
