@@ -1,11 +1,5 @@
 const Sequelize = require('sequelize');
 module.exports = function (sequelize, DataTypes) {
-    // email_logid: email_logid,
-    // email_recipient: recipient,
-    // email_subject: subject,
-    // email_timestamp: logdatetime,
-    // email_content: mailOptions.html,
-    // email_status: 'SENT',
   return sequelize.define(
     'FoodprintEmail',
     {
@@ -38,11 +32,11 @@ module.exports = function (sequelize, DataTypes) {
      },
     {
       sequelize,
-      tableName: 'foodprint_subscription',
+      tableName: 'foodprint_email',
       timestamps: false,
       indexes: [
         {
-          name: 'foodprint_subscription_PRIMARY',
+          name: 'foodprint_email_PRIMARY',
           unique: true,
           using: 'BTREE',
           fields: [{ name: 'pk' }],

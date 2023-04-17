@@ -56,12 +56,12 @@ const customSendEmail = function (recipient, subject, body) {
             //res.status.json({ err: error });
             //log to emailModel here
             let data = {
-                email_logid: email_logid,
-                email_recipient: recipient,
-                email_subject: subject,
-                email_timestamp: logdatetime,
-                email_content: mailOptions.html,
-                email_status: 'FAILED',
+                pk: email_logid,
+                recipient: recipient,
+                subject: subject,
+                timestamp: logdatetime,
+                content: mailOptions.html,
+                status: 'FAILED',
             };
             models.FoodprintEmail.create(data)
                 .then(_ => {
@@ -82,12 +82,12 @@ const customSendEmail = function (recipient, subject, body) {
 
             //log to emailModel here
             let data = {
-                email_logid: email_logid,
-                email_recipient: recipient,
-                email_subject: subject,
-                email_timestamp: logdatetime,
-                email_content: mailOptions.html,
-                email_status: 'SENT',
+                pk: email_logid,
+                recipient: recipient,
+                subject: subject,
+                timestamp: logdatetime,
+                content: mailOptions.html,
+                status: 'SENT',
             };
             models.FoodprintEmail.create(data)
                 .then(_ => {
