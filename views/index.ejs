@@ -338,7 +338,7 @@
           $('#demo_error_group').hide();
           $('#demo_result').html('');
           $.ajax({
-            url: '/demoform',
+            url: '/api/demorequest',
             data: JSON.stringify(data),
             processData: false,
             type: 'POST',
@@ -349,7 +349,7 @@
               $('#demo_error_group').hide();
               $("#demo_form").hide();
               $('#demo_result').html('Request sent.');
-              $('#demo_send_clicked').show()
+              $('#demo_send_clicked').show();
               $('#demo_send_clicked').html('We will be in touch. Thanks!');
 
             } else {
