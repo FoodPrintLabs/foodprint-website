@@ -157,7 +157,7 @@ router.post(
     check('contact_message', 'Contact message should not be empty').not().isEmpty(),
     check('contact_name', 'Contact first name should not be empty').not().isEmpty(),
   ],
-  function (req, res) {
+  async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       res.json({ errors: errors.array(), success: false });
@@ -182,7 +182,8 @@ router.post(
 
       // Send Email Using The Config/Email/.. Function
       // customSendEmail(recipient, subject, body)
-      customSendEmail(contact_form_receiver_email, contact_subject, contact_message_formatted);
+      customSendEmail(contact_email, contact_subject, contact_message_formatted);
+      res.json({ success: true, errors: false });
     }
   }
 );

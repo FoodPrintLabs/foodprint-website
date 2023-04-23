@@ -9,6 +9,10 @@ module.exports = function (sequelize, DataTypes) {
         allowNull: false,
         primaryKey: true,
       },
+      email_logid: {
+        type: DataTypes.STRING(255),
+        allowNull: true,
+      },      
       recipient: {
         type: DataTypes.STRING(255),
         allowNull: true,
