@@ -258,7 +258,7 @@
           <h1 class="title">Request a demo</h1>
           <span id="close-request-modal" class="close-icon"><i class="fa-solid fa-xmark"></i></span>
         </div>
-        <div class="form-container">
+        <div class="form-container request-demo-form-container">
 
           <form id="demo_form" method="post" class="form">
             <div class="form-group">
@@ -269,13 +269,9 @@
               <label for="email" class="form-group">Email</label>
               <input id="email" name="email" placeholder="Email" required />
             </div>
-            <!--       <div class="form-group">
-                                <label for="message" class="form-group">Message</label>
-                                <textarea id="message" name="message" placeholder="Message" cols="10" rows="4"></textarea>
-                            </div> -->
             <button type="submit" class="form-submit">Send</button>
           </form>
-          <text id="demo_send_clicked">vc</text>
+          <text id="demo_send_clicked" style="display: none"></text>
           <text id="demo_result"></text>
           <div class="alert-danger" id="demo_error_group" style="display: none">
             <ul id="demo_errors"></ul>
@@ -339,8 +335,6 @@
           $("#demo_form").hide();
           $('#demo_error_group').hide();
           $('#demo_result').html('');
-          //$('#demo_send_clicked').show()
-          //$('#demo_send_clicked').html('We will be in touch. Thanks!');
           $.ajax({
             url: '/demoform',
             data: JSON.stringify(data),
@@ -350,10 +344,10 @@
           }).done(function(res) {
             if (res.success) {
               //$("#contact_form").get(0).reset() // or $('form')[0].reset()
-              $("#demo_form").hide();
               $('#demo_error_group').hide();
+              $("#demo_form").hide();
+              $('#demo_result').html('Request sent.');
               $('#demo_send_clicked').show()
-              $('#demo_result').html('Message sent.');
               $('#demo_send_clicked').html('We will be in touch. Thanks!');
 
             } else {

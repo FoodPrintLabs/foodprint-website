@@ -618,7 +618,10 @@ body {
                 display: flex;
                 justify-content: center;
                 width: 100%;
+                height: 75%;
                 padding: 1rem 0;
+                flex-direction: column;
+                align-items: center;
                 .form {
                     width: 80%;
                     display: flex;

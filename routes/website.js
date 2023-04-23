@@ -124,10 +124,8 @@ router.post(
     if (!errors.isEmpty()) {
       res.json({ errors: errors.array(), success: false });
     } else {
-      let contact_form_receiver_email = process.env.CONTACT_FORM_EMAIL_ADDRESS;
       let contact_email = req.body.contact_email;
       let contact_name = req.body.contact_name;
-      let contact_message = req.body.contact_message;
       let contact_datetime = new Date();
       let contact_subject = 'FoodPrint Website Request Demo Enquiry';
 
@@ -144,7 +142,8 @@ router.post(
 
       // Send Email Using The Config/Email/.. Function
       // customSendEmail(recipient, subject, body)
-      customSendEmail(contact_form_receiver_email, contact_subject, contact_message_formatted);
+      customSendEmail(contact_email, contact_subject, contact_message_formatted);
+      res.json({ success: true, errors: false });
     }
   }
 );
