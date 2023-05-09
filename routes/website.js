@@ -1,9 +1,14 @@
 const express = require('express');
-const nodemailer = require('nodemailer');
 const { check, validationResult, sanitizeParam } = require('express-validator');
 const router = express.Router();
 const CUSTOM_ENUMS = require('../utils/enums');
 const customSendEmail = require('../config/email/email');
+const uuidv4 = require('uuid/v4');
+let moment = require('moment'); //datetime
+let initModels = require('../models/init-models');
+let sequelise = require('../config/db/db_sequelise');
+let models = initModels(sequelise);
+
 require('dotenv').config();
 
 //about
@@ -112,39 +117,57 @@ router.post(
 );
 
 
-//contactform XmlHTTP request
+//demoform XmlHTTP request
 router.post(
-  '/demoform',
+  '/api/demorequest',
   [
     check('contact_email', 'Contact email is not valid').not().isEmpty().isEmail().normalizeEmail(),
     check('contact_name', 'Contact  name should not be empty').not().isEmpty(),
   ],
   function (req, res) {
     const errors = validationResult(req);
+    let logdatetime = moment(new Date()).format('YYYY-MM-DD HH:mm:ss');
     if (!errors.isEmpty()) {
       res.json({ errors: errors.array(), success: false });
     } else {
-      let contact_form_receiver_email = process.env.CONTACT_FORM_EMAIL_ADDRESS;
-      let contact_email = req.body.contact_email;
-      let contact_name = req.body.contact_name;
-      let contact_message = req.body.contact_message;
-      let contact_datetime = new Date();
-      let contact_subject = 'FoodPrint Website Request Demo Enquiry';
+      let email = req.body.contact_email;
+      let name = req.body.contact_name;
+      let demo_request_subject = 'FoodPrint Website Request Demo Enquiry';
 
-      let contact_message_formatted =
+      let demo_request_message_formatted =
         '<p>Email Sender Name: ' +
-        contact_name +
+        name +
         '<p>Email Sender Email: ' +
-        contact_email +
+        email +
         '</p><p>Email Sent on: ' +
-        contact_datetime +
+        logdatetime +
         '</p><p>Email Message: ' +
         'Demo requested ' +
         '</p><br><br><p>Sent from FoodPrint Labs Website Demo Form.</p>';
 
       // Send Email Using The Config/Email/.. Function
-      // customSendEmail(recipient, subject, body)
-      customSendEmail(contact_form_receiver_email, contact_subject, contact_message_formatted);
+      console.log("Inside Before");
+      customSendEmail(email, demo_request_subject, demo_request_message_formatted);
+
+      console.log("Email")
+
+      let data = {
+        name: name,
+        email: email,
+        timestamp: logdatetime,
+        status: "PENDING"
+      };
+       models.FoodprintDemoRequest.create(data)
+        .then(_ => {
+            console.log('Success - Information saved to Request Demo DB ');
+        })
+        .catch(err => {
+            //throw err;
+            console.log('Error - Email not saved');
+            console.log(err.message);
+        })  
+        res.json({ success: true, errors: false });
+
     }
   }
 );
@@ -157,12 +180,11 @@ router.post(
     check('contact_message', 'Contact message should not be empty').not().isEmpty(),
     check('contact_name', 'Contact first name should not be empty').not().isEmpty(),
   ],
-  function (req, res) {
+  async (req, res) => {
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
       res.json({ errors: errors.array(), success: false });
     } else {
-      let contact_form_receiver_email = process.env.CONTACT_FORM_EMAIL_ADDRESS;
       let contact_email = req.body.contact_email;
       let contact_name = req.body.contact_name;
       let contact_message = req.body.contact_message;
@@ -182,7 +204,8 @@ router.post(
 
       // Send Email Using The Config/Email/.. Function
       // customSendEmail(recipient, subject, body)
-      customSendEmail(contact_form_receiver_email, contact_subject, contact_message_formatted);
+      customSendEmail(contact_email, contact_subject, contact_message_formatted);
+      res.json({ success: true, errors: false });
     }
   }
 );

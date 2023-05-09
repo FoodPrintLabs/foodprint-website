@@ -19,6 +19,9 @@ const emailTransport = nodemailer.createTransport({
         user: process.env.EMAIL_ADDRESS,
         pass: process.env.WEBAPP_PASSWORD,
     },
+    tls: {
+        rejectUnauthorized: false
+    }
 });
 
 // test email connection and authentication
@@ -28,7 +31,7 @@ emailTransport
     .then(console.log('Success - email connects and authenticates.'))
     .catch(console.error);
 
-const customSendEmail = function (recipient, subject, body) {
+const customSendEmail = async (recipient, subject, body) => {
     //check var
     const toCheck = () => {
         return process.env.NODE_ENV !== CUSTOM_ENUMS.PRODUCTION
@@ -49,29 +52,33 @@ const customSendEmail = function (recipient, subject, body) {
     };
     let email_logid = uuidv4();
     let logdatetime = moment(new Date()).format('YYYY-MM-DD HH:mm:ss');
-
+    let result = ""
     emailTransport.sendMail(mailOptions, function (error, info) {
+        console.log("Inside mail transport")
         if (error) {
+            console.log("Inside error 1")
             console.log('Error sending email - ', error);
             //res.status.json({ err: error });
             //log to emailModel here
             let data = {
                 email_logid: email_logid,
-                email_recipient: recipient,
-                email_subject: subject,
-                email_timestamp: logdatetime,
-                email_content: mailOptions.html,
-                email_status: 'FAILED',
+                recipient: recipient,
+                subject: subject,
+                timestamp: logdatetime,
+                content: mailOptions.html,
+                status: 'FAILED',
             };
             models.FoodprintEmail.create(data)
                 .then(_ => {
                     console.log('Error - Email not sent ' + email_logid);
+                   
                 })
                 .catch(err => {
                     //throw err;
                     console.log('Error - Failed email not saved ' + email_logid);
                     console.log(err.message);
                 });
+         result = "fail";
         } else {
             console.log(
                 'Success - Email successfully sent. Response - %s, Message ID - %s, email record ID - %s',
@@ -83,11 +90,11 @@ const customSendEmail = function (recipient, subject, body) {
             //log to emailModel here
             let data = {
                 email_logid: email_logid,
-                email_recipient: recipient,
-                email_subject: subject,
-                email_timestamp: logdatetime,
-                email_content: mailOptions.html,
-                email_status: 'SENT',
+                recipient: recipient,
+                subject: subject,
+                timestamp: logdatetime,
+                content: mailOptions.html,
+                status: 'SENT',
             };
             models.FoodprintEmail.create(data)
                 .then(_ => {
@@ -95,7 +102,7 @@ const customSendEmail = function (recipient, subject, body) {
                 })
                 .catch(err => {
                     //throw err;
-                    console.log('Error - Email not sent ' + email_logid);
+                    console.log('Error - Email not sent down ' + email_logid);
                     console.log(err.message);
                     //Update previous saved email in db
                     let data_update = { email_status: 'FAILED' };
@@ -113,8 +120,10 @@ const customSendEmail = function (recipient, subject, body) {
                             console.log(err.message);
                         });
                 });
+                result = "success";
         }
     });
+    return result;
 };
 
 module.exports = customSendEmail;

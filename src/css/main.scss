@@ -154,6 +154,7 @@ body {
             border-radius: 25px;
             margin-top: 2rem;
             transition: all 0.5s ease-in;
+            cursor: pointer;
             font: {
                 size: 1rem;
                 weight: 600;
@@ -617,7 +618,10 @@ body {
                 display: flex;
                 justify-content: center;
                 width: 100%;
+                height: 75%;
                 padding: 1rem 0;
+                flex-direction: column;
+                align-items: center;
                 .form {
                     width: 80%;
                     display: flex;
@@ -693,13 +697,12 @@ body {
     }
     .footer-container {
         z-index: 30 !important;
-        padding: 0rem 5vw;
+        padding: 2rem 5vw;
         position: relative;
         margin: 0;
         .footer-sections {
             display: flex;
             justify-content: space-between;
-            padding: 1rem 0;
             .section {
                 .heading {
                     color: $primary-color;
@@ -756,19 +759,40 @@ body {
         .copyright-social-links {
             display: flex;
             justify-content: space-between;
-            padding: 0;
-            margin-top: 1rem;
+            height: 100%;
+            align-items: center;
+            //margin-top: 1rem;
             .copyright {
-                p a {
-                    color: #c58000;
+                p {
+                    padding: 0;
+                    margin: 0;
+                    a {
+                        color: #c58000;
+                        justify-self: center;
+                    }
                 }
             }
             .social-links-list {
                 display: flex;
                 list-style-type: none;
+                align-items: center;
                 gap: 1rem;
-                li a i {
-                    font-size: 1.5rem;
+                padding: 0;
+                margin: 0;
+                li {
+                    display: grid;
+                    place-items: center;
+                    padding: 0;
+                    margin: 0;
+                    a {
+                        display: grid;
+                        place-items: center;
+                        padding: 0;
+                        margin: 0;
+                        i {
+                            font-size: 1.5rem;
+                        }
+                    }
                 }
             }
         }

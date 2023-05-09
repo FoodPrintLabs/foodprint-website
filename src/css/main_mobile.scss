@@ -120,6 +120,7 @@ body {
                 border-radius: 25px;
                 margin-top: 2rem;
                 transition: all 0.5s ease-in;
+                cursor: pointer;
                 font: {
                     size: 1rem;
                     weight: 600;
@@ -650,7 +651,7 @@ body {
         }
         .footer-container {
             z-index: 30 !important;
-            padding: 0rem 5vw;
+            padding: 1.2rem 5vw;
             position: relative;
             margin: 0;
             .footer-sections {
@@ -719,7 +720,7 @@ body {
                 flex-direction: column-reverse;
                 justify-content: center;
                 align-items: center;
-                margin-top: 1rem;
+                gap: 1rem;
                 .copyright {
                     font-size: 12px;
                     p a {
